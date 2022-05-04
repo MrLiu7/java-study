@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Element对象</title>
+</head>
+<body>
+<a>黑马程序员</a>
+<input type="button" id="btn_set" value="注册地址">
+<input type="button" id="btn_remove" value="删除地址">
+
+<script>
+    var btn_set = document.getElementById("btn_set");
+    btn_set.onclick = function (){
+        var a = document.getElementsByTagName("a")[0];
+        a.setAttribute("href","https://www.itheima.com/")
+    }
+
+    var btn_remove = document.getElementById("btn_remove");
+    btn_remove.onclick = function (){
+        var a = document.getElementsByTagName("a")[0];
+        a.removeAttribute("href")
+    }
+
+</script>
+</body>
+</html>

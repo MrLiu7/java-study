@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS对象Function</title>
+</head>
+<body>
+<script>
+  /*
+  Function对象：函数（方法）对象
+    1：创建对象
+      1、var fun = new Function(形参列表,方法体);
+      2、
+    2：对象的方法
+    3：对象的属性
+    4：对象的特点
+    5：对象的调用
+   */
+  //方式3
+  function add(){
+      var len = arguments.length-1;
+      var sun = 0;
+      while (len>=0){
+          sun+=arguments[len];
+          len--;
+      }
+      return sun;
+  }
+  alert(add(1,2,3,4));
+</script>
+</body>
+</html>

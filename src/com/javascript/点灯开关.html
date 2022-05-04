@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电灯开关</title>
+
+</head>
+<body>
+<img id="light" src="img/off.gif">
+<h1 id="test">白天灯已关</h1>
+<script>
+    //注意不要带括号
+    var flag = false;
+    light.onclick=function (){
+        var light = document.getElementById("light");
+        var test = document.getElementById("test");
+        if (flag){
+            light.src="img/off.gif";
+            test.innerHTML="白天灯已关";
+            flag=!flag;
+        }else {
+            light.src="img/on.gif";
+            test.innerHTML="黑夜灯已开";
+            flag=!flag;
+        }
+    }
+</script>
+</body>
+</html>

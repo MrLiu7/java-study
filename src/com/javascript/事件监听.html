@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件监听</title>
+</head>
+<body>
+<form id="form" onclick="return myFun()">
+    <input  name="username" type="submit">
+</form>
+
+<script>
+    function myFun(){
+        return false;//不允许提交
+        return true;//允许提交
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>窗口对象</title>
+</head>
+<body>
+<input type="button" value="打开百度" id="baiduBtn"><br>
+<input type="button" value="打开空白窗口" id="nullBtn">
+<input type="button" value="关闭百度窗口" id="closeBtn">
+<script>
+    var newWindow;
+    var nullBtn = document.getElementById("nullBtn");
+    nullBtn.onclick = function (){
+        window.open();
+    }
+    var baiduBtn = document.getElementById("baiduBtn");
+    baiduBtn.onclick = function (){
+        newWindow = window.open("https://www.baidu.com/");
+    }
+    var closeBtn = document.getElementById("closeBtn");
+    closeBtn.onclick=function (){
+        newWindow.close();
+    }
+</script>
+</body>
+</html>

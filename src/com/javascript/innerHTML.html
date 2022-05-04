@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>innerHTML</title>
+</head>
+<body>
+<div id="div1">
+    div标签体
+</div>
+<input type="button" onclick="change()" value="更换" id="change">
+<input type="button" onclick="change()" value="追加" id="add">
+
+<script>
+    //替换HTML
+    document.getElementById("change").onclick = function change() {
+        document.getElementById("div1").innerHTML = "<input type='text'>";
+    }
+    //追加
+    document.getElementById("add").onclick = function (){
+        document.getElementById("div1").innerHTML += '<input type="text">';
+    }
+</script>
+</body>
+</html>

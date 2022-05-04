@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+    <style>
+        div {
+            text-align: center;
+            margin: 50px;
+        }
+
+        table {
+            border: 1px solid;
+            margin: auto;
+            width: 500px;
+        }
+
+        td, th {
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<!--添加信息栏-->
+<div>
+    <input type="text" placeholder="输入编号" id="id">
+    <input type="text" placeholder="输入姓名" id="name">
+    <input type="text" placeholder="输入性别" id="gender">
+    <input type="button" value="添加" id="btn_add">
+</div>
+
+<table>
+    <!--表格标题-->
+    <caption>学生信息表</caption>
+    <tr>
+        <!--th定义表头单元格-->
+        <th class="id">编号</th>
+        <th class="id">姓名</th>
+        <th class="id">性别</th>
+        <th class="id">操作</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>张三</td>
+        <td>男</td>
+        <td><a href="javascript:void(0)" onclick="delTr(this)">删除</a></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>李四</td>
+        <td>女</td>
+        <td><a href="javascript:void(0)" onclick="delTr(this)">删除</a></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>王五</td>
+        <td>男</td>
+        <td><a href="javascript:void(0)" onclick="delTr(this)">删除</a></td>
+    </tr>
+</table>
+
+<script>
+    /*
+    添加：
+        1：给添加按钮绑定点击事件
+        2：获取文本框内容
+        3：创建td设置td的文本
+        4：将td添加到tr中
+        5：将td添加到tr中
+        6：获取table，将tr添加到table中
+     */
+    document.getElementById("btn_add").onclick = function () {
+        //获取文本框内容
+        var id_text = document.getElementById("id").value;
+        var name_text = document.getElementById("name").value;
+        var gender_text = document.getElementById("gender").value;
+        //创建td
+        var id_td = document.createElement("td");
+        //创建文本节点
+        var text_id_td = document.createTextNode(id_text);
+        // td添加文本结点
+        id_td.appendChild(text_id_td);
+        var name_td = document.createElement("td");
+        var text_name_td = document.createTextNode(name_text);
+        name_td.appendChild(text_name_td);
+        var gender_td = document.createElement("td");
+        var gender_text_td = document.createTextNode(gender_text);
+        gender_td.appendChild(gender_text_td);
+        //创建删除超链接
+        var del_td = document.createElement("td");
+        var del = document.createElement("a");
+        //添加属性
+        del.setAttribute("href","javascript:void(0)");
+        del.setAttribute("onclick","delTr(this)");
+        var del_text = document.createTextNode("删除");
+        del.appendChild(del_text);
+        del_td.appendChild(del);
+        //创建tr
+        var tr = document.createElement("tr");
+        tr.appendChild(id_td);
+        tr.appendChild(name_td);
+        tr.appendChild(gender_td);
+        tr.appendChild(del_td);
+        //获取table
+        var table = document.getElementsByTagName("table")[0];
+        table.appendChild(tr);
+    }
+
+    /*
+    删除：
+        确定删除的是哪一个结点 this
+        <a href="javascript:void(0)" onclick="delTr(this)">删除</a>
+        如何删除
+            removeChild()：通过父标签删除子结点
+     */
+    function delTr(obj){
+        var table = obj.parentNode.parentNode.parentNode;
+        var tr = obj.parentNode.parentNode;
+        table.removeChild(tr);
+    }
+</script>
+</body>
+</html>

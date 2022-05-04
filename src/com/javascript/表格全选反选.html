@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格全选反选</title>
+    <style>
+        table{
+            border:1px solid black;
+            margin-left: 30%;
+            margin-top: 50px;
+            width: 500px;
+        }
+        td,th{
+            border: 1px solid black;
+            text-align: center;
+        }
+        div{
+            margin-top: 20px;
+            margin-left: 30%;
+        }
+        .over{
+            background-color: pink;
+        }
+        .out{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<table>
+  <caption>学生信息表</caption>
+    <tr>
+        <th><input type="checkbox" name="cb"></th>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <th><input type="checkbox" name="cb"></th>
+        <td>1</td>
+        <td>令狐冲</td>
+        <td>男</td>
+        <td><a href="javascript:void(0)" name="cb">删除</a> </td>
+    </tr>
+    <tr>
+        <th><input type="checkbox" name="cb"></th>
+        <td>2</td>
+        <td>任我行</td>
+        <td>男</td>
+        <td><a href="javascript:void(0)" name="cb">删除</a> </td>
+    </tr>
+    <tr>
+        <th><input type="checkbox" name="cb"></th>
+        <td>3</td>
+        <td>岳不群</td>
+        <td>男</td>
+        <td><a href="javascript:void(0)">删除</a> </td>
+    </tr>
+</table>
+<div>
+    <input type="button" id="all" value="全选">
+    <input type="button" id="noAll" value="全不选">
+    <input type="button" id="rs" value="反选">
+</div>
+
+<script>
+    //获取所有的checkbox
+    var cbs = document.getElementsByName("cb");
+    document.getElementById("all").onclick=function (){
+        //遍历checkbox，判断状态 checked
+        for (var i=0;i<cbs.length;++i){
+            cbs[i].checked=true;
+        }
+    }
+    document.getElementById("noAll").onclick=function (){
+        //遍历checkbox，判断状态 checked
+        for (var i=0;i<cbs.length;++i){
+            cbs[i].checked=false;
+        }
+    }
+    document.getElementById("rs").onclick=function (){
+        //遍历checkbox，判断状态 checked
+        for (var i=0;i<cbs.length;++i){
+            cbs[i].checked=!cbs[i].checked;
+        }
+    }
+    for (const tr of document.getElementsByTagName("tr")) {
+        tr.onmouseover = function (){
+            this.className = "over";
+        }
+        tr.onmouseout = function (){
+            tr.className = "out";
+        }
+    }
+</script>
+</body>
+</html>

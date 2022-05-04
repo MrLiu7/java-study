@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>样式控制</title>
+    <style>
+        .d1 {
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+        }
+
+        .d2 {
+            border: 1px solid blue;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    HTMLDOM样式控制
+</div>
+
+<script>
+    var div = document.getElementsByTagName("div")[0];
+    div.onclick = function () {
+        //使用类属性修改样式
+        div.className = "d1";
+    }
+</script>
+</body>
+</html>

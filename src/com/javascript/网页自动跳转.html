@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页自动跳转</title>
+    <style>
+        .title {
+            color: red;
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<p><span  id="time" class="title">5</span>秒后自动跳转黑马程序员官网</p>
+<script>
+    var s = 4;
+    var id = document.getElementById("time");
+    function fun(){
+        id.innerText = s--;
+        if (s===0) {
+            location.href = "https://www.itheima.com/";
+            clearInterval(timeID);
+        }
+    }
+    var timeID = setInterval(fun,1000);
+</script>
+</body>
+</html>

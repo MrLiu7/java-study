@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node对象</title>
+    <style>
+        div{
+            border: 1px solid red;
+        }
+        #div1{
+            width: 200px;
+            height: 200px;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    div1
+    <div id="div2">
+        div2
+    </div>
+</div>
+<!--使用超链接标签完成的话需要指定 href="javascript:void(0)"-->
+
+<a href="javascript:void(0)" id="remove" >删除div2</a>
+<a href="javascript:void(0)" id="add">添加div2</a>
+<script>
+    var remove = document.getElementById("remove");
+    remove.onclick = function (){
+        var div1 = document.getElementById("div1");
+        var div2 = document.getElementById("div2");
+        div1.removeChild(div2);
+    }
+    var add = document.getElementById("add");
+    add.onclick = function (){
+        var div1 = document.getElementById("div1");
+        //创建子结点
+        var div2 = document.createElement("div");
+        div2.setAttribute("id","div2");
+        div2.innerText="这是添加的结点 div2";
+        div1.appendChild(div2);
+    }
+    var div2 = document.getElementById("div2");
+    alert(div2.parentNode);
+</script>
+</body>
+</html>
