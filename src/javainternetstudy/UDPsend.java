@@ -4,25 +4,25 @@ import java.io.IOException;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
-//Í¨ĞÅĞ­Òé UDP µÄ·¢ËÍÊı¾İ
+//é€šä¿¡åè®® UDP çš„å‘é€æ•°æ®
 public class UDPsend {
     public static void main(String[] args) throws IOException {
-        //DatagramSocked±íÊ¾ÓÃÓÚ·¢ËÍºÍ½ÓÊÕÊı¾İ±¨Êı¾İ°üµÄÌ×½Ó×Ö¡£
+        //DatagramSockedè¡¨ç¤ºç”¨äºå‘é€å’Œæ¥æ”¶æ•°æ®æŠ¥æ•°æ®åŒ…çš„å¥—æ¥å­—ã€‚
         DatagramSocket ds = new DatagramSocket();
 
-        byte[]infos="ÄãºÃ£¬UDP£¡".getBytes();
+        byte[]infos="ä½ å¥½ï¼ŒUDPï¼Œä¸å®‰å…¨çš„ä¼ è¾“åè®®ã€‚".getBytes();
 
-        //DatagramPacked±íÊ¾Êı¾İ±¨°ü¡£
+        //DatagramPackedè¡¨ç¤ºæ•°æ®æŠ¥åŒ…ã€‚
 
-        //ÕÆÎÕÒÔÏÂÒ»¸ö¹¹Ôì·½·¨£º
-        //¹¹ÔìÒ»¸öÊı¾İ°ü£¬·¢ËÍ³¤¶ÈÎª lengthµÄÊı¾İ°üµ½Ö¸¶¨Ö÷»úÉÏµÄÖ¸¶¨¶Ë¿ÚºÅ¡£
-        //²ÎÊıÎª£º·¢ËÍĞÅÏ¢µÄ×Ö½ÚÊı×é£¬·¢ËÍĞÅÏ¢µÄ³¤¶È£¬InetAddressµØÖ·£¬¶Ë¿ÚºÅ
+        //æŒæ¡ä»¥ä¸‹ä¸€ä¸ªæ„é€ æ–¹æ³•ï¼š
+        //æ„é€ ä¸€ä¸ªæ•°æ®åŒ…ï¼Œå‘é€é•¿åº¦ä¸º lengthçš„æ•°æ®åŒ…åˆ°æŒ‡å®šä¸»æœºä¸Šçš„æŒ‡å®šç«¯å£å·ã€‚
+        //å‚æ•°ä¸ºï¼šå‘é€ä¿¡æ¯çš„å­—èŠ‚æ•°ç»„ï¼Œå‘é€ä¿¡æ¯çš„é•¿åº¦ï¼ŒInetAddressåœ°å€ï¼Œç«¯å£å·
         //DatagramPacket(byte[] buf, int length, InetAddress address, int port);
-        DatagramPacket dp = new DatagramPacket(infos,infos.length, InetAddress.getByName("DESKTOP-6DEHF8V"),1000);
+        DatagramPacket dp = new DatagramPacket(infos,infos.length, InetAddress.getByName("192.168.1.10"),1000);
 
-        //Ê¹ÓÃDatagramSocked·¢ËÍÊı¾İ
+        //ä½¿ç”¨DatagramSockedå‘é€æ•°æ®
         ds.send(dp);
-        //¹Ø±ÕÊÍ·Å×ÊÔ´
+        //å…³é—­é‡Šæ”¾èµ„æº
         ds.close();
     }
 }
