@@ -1,55 +1,53 @@
-package javainternetstudy;
+package javainternetstudy.UDP.example;
 
 import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
 
 /**
- * @author Áø¼Ì¼Í
- * @date 7/5/2022
+ * @author æŸ³ç»§çºª
+ * &#064;date  7/5/2022
  * @apiNote
  */
 public class UDPExampleSend {
     /*
-    UDP·¢ËÍÊı¾İ£ºÊı¾İÀ´Ô´ÓÚ¼üÅÌ£¬Ö±µ½ÊäÈëµÄÊı¾İÊÇ886£¬·¢ËÍÊı¾İ½áÊø
-    UDP½ÓÊÕÊı¾İ£ºÒ»Ö±½ÓÊÕÀ´×Ô·¢ËÍ¶ËµÄÊı¾İ²¢Êä³ö
+    UDPå‘é€æ•°æ®ï¼šæ•°æ®æ¥æºäºé”®ç›˜ï¼Œç›´åˆ°è¾“å…¥çš„æ•°æ®æ˜¯886ï¼Œå‘é€æ•°æ®ç»“æŸ
+    UDPæ¥æ”¶æ•°æ®ï¼šä¸€ç›´æ¥æ”¶æ¥è‡ªå‘é€ç«¯çš„æ•°æ®å¹¶è¾“å‡º
      */
     public static void main(String[] args) throws IOException {
         sendInfo();
     }
 
     /**
-     * ·¢ËÍÏûÏ¢Ó¦ÓÃ¶Ë
-     *
-     * @throws IOException
+     * å‘é€æ¶ˆæ¯åº”ç”¨ç«¯
      */
     public static void sendInfo() throws IOException {
-        //´´½¨Êı¾İ·¢ËÍ¶ÔÏó
-        //Ê¹ÓÃÅ×³öÒì³£´¦ÀíÒ»Òì³£
+        //åˆ›å»ºæ•°æ®å‘é€å¯¹è±¡
+        //ä½¿ç”¨æŠ›å‡ºå¼‚å¸¸å¤„ç†ä¸€å¼‚å¸¸
         DatagramSocket ds = new DatagramSocket();
 
-        //´´½¨×Ö½ÚÊı×é£¬ÓÃÀ´»ñÈ¡ÓÃ»§µÄÊäÈë
-        byte[] info = new byte[1024];
+        //åˆ›å»ºå­—èŠ‚æ•°ç»„ï¼Œç”¨æ¥è·å–ç”¨æˆ·çš„è¾“å…¥
+        byte[] info;
 
-        //Í¨¹ıwhileÑ­»·À´»ñÈ¡ÓÃ»§ÊäÈë
+        //é€šè¿‡whileå¾ªç¯æ¥è·å–ç”¨æˆ·è¾“å…¥
         String userInputInfo = " ";
         Scanner input = new Scanner(System.in);
         while (!userInputInfo.equals("886")) {
-            System.out.println("µ±Ç°¿ÉÒÔÊäÈëÏûÏ¢£º");
+            System.out.println("å½“å‰å¯ä»¥è¾“å…¥æ¶ˆæ¯ï¼š");
             userInputInfo = input.nextLine();
             info = userInputInfo.getBytes();
 
-            //´´½¨Êı¾İ×Ö½ÚÌ×
-            //¶Ë¿ÚºÅÎª 2677
+            //åˆ›å»ºæ•°æ®å­—èŠ‚å¥—
+            //ç«¯å£å·ä¸º 2677
             DatagramPacket dp = new DatagramPacket(info, info.length, InetAddress.getByName("XiaoLiuPA"), 2677);
 
-            //Ê¹ÓÃ DatagramSocket¶ÔÏó·¢ËÍÊı¾İ
+            //ä½¿ç”¨ DatagramSocketå¯¹è±¡å‘é€æ•°æ®
             ds.send(dp);
         }
 
-        System.out.println("ÒÑ½áÊø¶Ô»°");
+        System.out.println("å·²ç»“æŸå¯¹è¯");
 
-        //¹Ø±Õ×ÊÔ´
+        //å…³é—­èµ„æº
         ds.close();
     }
 }

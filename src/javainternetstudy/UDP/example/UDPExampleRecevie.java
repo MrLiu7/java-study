@@ -1,13 +1,12 @@
-package javainternetstudy;
+package javainternetstudy.UDP.example;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 
 /**
- * @author Áø¼Ì¼Í
- * @date 7/5/2022
+ * @author æŸ³ç»§çºª
+ * &#064;date  7/5/2022
  * @apiNote
  */
 public class UDPExampleRecevie {
@@ -16,37 +15,37 @@ public class UDPExampleRecevie {
     }
 
     public static void received() throws IOException {
-        //´´½¨DatagramSocket×Ö½ÚÌ×·¢ËÍ½ÓÊÜ¶ÔÏó
-        //½ÓÊÕ¶ËĞèÒªÖ¸¶¨¶Ë¿ÚºÅ
+        //åˆ›å»ºDatagramSocketå­—èŠ‚å¥—å‘é€æ¥å—å¯¹è±¡
+        //æ¥æ”¶ç«¯éœ€è¦æŒ‡å®šç«¯å£å·
         DatagramSocket ds = new DatagramSocket(2677);
 
-        //´´½¨×Ö½ÚÊı×éÀ´±£´æÖ±½ÓÌ×Êı¾İ»º´æ
+        //åˆ›å»ºå­—èŠ‚æ•°ç»„æ¥ä¿å­˜ç›´æ¥å¥—æ•°æ®ç¼“å­˜
         byte[] infos = new byte[1024];
         String text;
 
-        //´´½¨½ÓÊÕ¶ËDatagramPacketÖ±½ÓÌ×ÎÄ¼ş¶ÔÏó
+        //åˆ›å»ºæ¥æ”¶ç«¯DatagramPacketç›´æ¥å¥—æ–‡ä»¶å¯¹è±¡
         DatagramPacket dp;
 
         while (true) {
             dp = new DatagramPacket(infos, infos.length);
 
-            //½ÓÊÕÊı¾İ
+            //æ¥æ”¶æ•°æ®
             ds.receive(dp);
 
-            //½âÎöÊı¾İ
+            //è§£ææ•°æ®
             //dp.getData();
 
             text = new String(infos, 0, dp.getLength());
 
             if (text.equals("886")) break;
 
-            //Êä³öÊı¾İ
+            //è¾“å‡ºæ•°æ®
             System.out.println(text);
         }
 
-        System.out.println("¶Ô·½½áÊøÁË¶Ô»°");
+        System.out.println("å¯¹æ–¹ç»“æŸäº†å¯¹è¯");
 
-        //¹Ø±Õ×ÊÔ´
+        //å…³é—­èµ„æº
         ds.close();
     }
 }

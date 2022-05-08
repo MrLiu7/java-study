@@ -1,4 +1,4 @@
-package javainternetstudy;
+package javainternetstudy.UDP.study;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
