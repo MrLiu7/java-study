@@ -1,34 +1,33 @@
-package JDBC.JDBCUtils;
-
-import JDBC.Emp;
+package DataSource.JDBC;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * @author 柳继纪
  * @date 13/5/2022
  * @apiNote
  */
-public class JDBCUtilsTest {
+public class JDBCDemo6 {
     public static void main(String[] args) {
-        List<Emp> list = new JDBCUtilsTest().getInfoFromSql();
-        for (Emp emp : list) {
-            System.out.println(emp);
+        List<Emp> list = new JDBCDemo6().getInfoFromSql();
+        ListIterator<Emp>empListIterator = list.listIterator();
+        while (empListIterator.hasNext()){
+            System.out.println(empListIterator.next());
         }
     }
 
     public List<Emp> getInfoFromSql() {
         Connection connection = null;
         Statement statement = null;
-        ResultSet resultSet = null;
         List<Emp> set = new ArrayList<Emp>();
         try {
-            connection = JDBCUtils.creat();
+            connection = DriverManager.getConnection("jdbc:mysql:///study", "root", "525658");
             statement = connection.createStatement();
             String sql = "select * from account";
-            resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(sql);
             Emp emp;
             while (resultSet.next()) {
                 emp = new Emp();
@@ -41,7 +40,20 @@ public class JDBCUtilsTest {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close(connection, statement, resultSet);
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
         return set;
     }

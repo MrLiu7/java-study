@@ -1,33 +1,34 @@
-package JDBC;
+package DataSource.JDBC.JDBCUtils;
+
+import DataSource.JDBC.Emp;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * @author 柳继纪
  * @date 13/5/2022
  * @apiNote
  */
-public class JDBCDemo6 {
+public class JDBCUtilsTest {
     public static void main(String[] args) {
-        List<Emp> list = new JDBCDemo6().getInfoFromSql();
-        ListIterator<Emp>empListIterator = list.listIterator();
-        while (empListIterator.hasNext()){
-            System.out.println(empListIterator.next());
+        List<Emp> list = new JDBCUtilsTest().getInfoFromSql();
+        for (Emp emp : list) {
+            System.out.println(emp);
         }
     }
 
     public List<Emp> getInfoFromSql() {
         Connection connection = null;
         Statement statement = null;
+        ResultSet resultSet = null;
         List<Emp> set = new ArrayList<Emp>();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql:///study", "root", "525658");
+            connection = JDBCUtils.creat();
             statement = connection.createStatement();
             String sql = "select * from account";
-            ResultSet resultSet = statement.executeQuery(sql);
+            resultSet = statement.executeQuery(sql);
             Emp emp;
             while (resultSet.next()) {
                 emp = new Emp();
@@ -40,20 +41,7 @@ public class JDBCDemo6 {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            JDBCUtils.close(connection, statement, resultSet);
         }
         return set;
     }

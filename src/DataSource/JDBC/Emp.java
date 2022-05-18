@@ -1,4 +1,4 @@
-package JDBC;
+package DataSource.JDBC;
 
 import java.util.Date;
 

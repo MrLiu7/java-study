@@ -1,7 +1,6 @@
-package JDBC.JDBCUtils;
+package DataSource.JDBC.JDBCUtils;
 
 import java.sql.Connection;
-import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
