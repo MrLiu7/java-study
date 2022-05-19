@@ -1,15 +1,15 @@
 package WriteExcel;
 /**
- * HSSFWorkbook è¡¨ç¤º03ç‰ˆæœ¬çš„excelï¼Œæœ‰æœ€å¤§è¡Œæ•°é™åˆ¶
- * POIå†™excelçš„åŸºæœ¬çš„ä½¿ç”¨
+ * HSSFWorkbook ±íÊ¾03°æ±¾µÄexcel£¬ÓĞ×î´óĞĞÊıÏŞÖÆ
+ * POIĞ´excelµÄ»ù±¾µÄÊ¹ÓÃ
  */
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,32 +18,48 @@ import java.io.IOException;
 
 public class SXSSFWorkbookWrite {
     public static void main(String[] args) {
-        //1ã€åˆ›å»ºå·¥ä½œéƒ¨
+        //1¡¢´´½¨¹¤×÷²¿
         Workbook workbook = new SXSSFWorkbook();
-        //2ã€åˆ›å»ºè¡¨
-        Sheet sheet = workbook.createSheet("åŠ å¼ºè¡¨");
-        //3ã€åˆ›å»ºè¡Œ
-        //å‚æ•°è¡¨ç¤ºè¡Œå·ï¼Œ0ä»£è¡¨ç¬¬ä¸€è¡Œ
-        Row row = sheet.createRow(0);
-        //4ã€åˆ›å»ºè¡¨æ ¼
-        //å‚æ•°è¡¨ç¤ºåˆ—å·ï¼Œ0ä»£è¡¨ç¬¬ä¸€åˆ—
-        Cell cell = row.createCell(0);
-        //æ·»åŠ æ•°æ®
-        cell.setCellValue("å­¦ä¹ æ—¶é•¿");
+        //2¡¢´´½¨±í
+        Sheet sheet = workbook.createSheet("¼ÓÇ¿±í");
+        //3¡¢´´½¨ĞĞ
+        //²ÎÊı±íÊ¾ĞĞºÅ£¬0´ú±íµÚÒ»ĞĞ
+        Row row;
+        //4¡¢´´½¨±í¸ñ
+        //²ÎÊı±íÊ¾ÁĞºÅ£¬0´ú±íµÚÒ»ÁĞ
+        Cell cell;
 
-        //ä¿å­˜æ•°æ®
-        File file = new File("D:\\å­¦ä¹ å¸‚åœºè®°å½•è¡¨.xls");
+        long start = System.currentTimeMillis();
+
+        for (int i = 0; i < 100000; i++) {
+            row = sheet.createRow(i);
+            for (int j = 0; j < 100; j++) {
+                cell = row.createCell(j);
+                //ÉèÖÃÊı¾İ
+                cell.setCellValue(j);
+            }
+        }
+
+        //±£´æÊı¾İ
+        File file = new File("D:\\Ñ§Ï°Ê±³£¼ÇÂ¼±í.xls");
         try {
             FileOutputStream outputStream = new FileOutputStream(file);
-            //å†™å‡ºæ•°æ®
+            //Ğ´³öÊı¾İ
             workbook.write(outputStream);
+            //¹Ø±ÕÁ÷
+            outputStream.close();
+            //Çå³ıÁÙÊ±ÎÄ¼ş
+            ((SXSSFWorkbook)(workbook)).dispose();
         } catch (FileNotFoundException e) {
-            System.out.println("æ²¡æœ‰æ‰¾åˆ°ç›¸å…³æ–‡ä»¶"+ file);
+            System.out.println("Ã»ÓĞÕÒµ½Ïà¹ØÎÄ¼ş" + file);
             throw new RuntimeException(e);
         } catch (IOException e) {
-            System.out.println("å·¥ä½œç°¿å†™å‡ºæ•°æ®å‡ºé”™ï¼");
+            System.out.println("¹¤×÷²¾Ğ´³öÊı¾İ³ö´í£¡");
             throw new RuntimeException(e);
         }
-        System.out.println("æˆåŠŸ");
+
+        long end = System.currentTimeMillis();
+
+        System.out.println("³É¹¦£¬ºÄÊ± "+(double)(end-start)/1000+"Ãë");
     }
 }
