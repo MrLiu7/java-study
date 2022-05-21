@@ -17,7 +17,7 @@ public class TCPSend {
     public static void main(String[] args) throws IOException {
         //创建客户端对象
         //通过直接指定IP地址的构造方法创建
-        Socket socket = new Socket("192.168.1.4", 2677);
+        Socket socket = new Socket("192.168.1.6", 2677);
 
         //创建输出流 获取字节套的输出流
         OutputStream os = socket.getOutputStream();

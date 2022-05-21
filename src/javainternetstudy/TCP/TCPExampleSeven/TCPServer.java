@@ -1,4 +1,4 @@
-package javainternetstudy.TCP.TCPExampleEight;
+package javainternetstudy.TCP.TCPExampleSeven;
 
 import java.io.IOException;
 import java.net.ServerSocket;

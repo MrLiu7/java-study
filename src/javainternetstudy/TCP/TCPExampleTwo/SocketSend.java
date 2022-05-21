@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class SocketSend {
     public static void main(String[] args) throws IOException {
         //创建客户端的发送对象
-        Socket socket = new Socket("192.168.1.4", 2677);
+        Socket socket = new Socket("192.168.1.6", 2677);
 
         String info = "notNull";
         Scanner input = new Scanner(System.in);
